@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>View and update details on mortgage applications</description>
+    <description></description>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Account.GDM_CompanyRegistrationNumber__c</field>
+        <field>Account.GDM_CompanyRegistrati</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
