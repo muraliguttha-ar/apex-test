@@ -68,6 +68,7 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <description>description</description>
         <fullName>Brewery__c</fullName>
         <externalId>false</externalId>
         <label>Brewery</label>
