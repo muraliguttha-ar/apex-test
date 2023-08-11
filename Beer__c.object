@@ -56,7 +56,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
-        <description>description</description>
         <fullName>Alcohol__c</fullName>
         <externalId>false</externalId>
         <label>Alcohol</label>
@@ -68,6 +67,7 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <description>description</description>
         <fullName>Brewery__c</fullName>
         <externalId>false</externalId>
         <label>Brewery</label>
