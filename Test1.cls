@@ -1,24 +1,25 @@
 public class CreateMetadata{
   public void updateAndDeployMetadata() {
-    // Setup custom metadata to be created in the subscriber org.
-    Metadata.CustomMetadata customMetadata =  new Metadata.CustomMetadata();
-    customMetadata.fullName = 'ISVNamespace__MetadataTypeName.MetadataRecordName';
+    Metadata.DeployContainer container = new Metadata.DeployContainer();
 
-    Metadata.CustomMetadataValue customField = new Metadata.CustomMetadataValue();
-    customField.field = 'customField__c';
-    customField.value = 'New value';
+    for (XYZ_Trigger handler :[SELECT Id, Mlab, DName, BParm__c, BARCalls__c FROM XYZ_Trigger]) {
+        Metadata.CustomMetadata customMetadata = new Metadata.CustomMetadata();
+        customMetadata.fullName = 'BTrigger_Registration.' + handler.DName;
+        customMetadata.label = handler.Mlab;
 
-    customMetadata.values.add(customField);
+        Metadata.CustomMetadataValue customField = new Metadata.CustomMetadataValue();
+        customField.field = 'BTriggerParms__c'; //the custom field API Name that you're wanting to insert/update a value of
+        customField.value = handler.BParm__c;
+        customMetadata.values.add(customField);
 
-    Metadata.DeployContainer mdContainer = new Metadata.DeployContainer();
-    mdContainer.addMetadata(customMetadata);
+        customField = new Metadata.CustomMetadataValue();
+        customField.field = 'BARClass__c'; //the custom field API Name that you're wanting to insert/update a value of
+        customField.value = handler.BARCalls__c;
+        customMetadata.values.add(customField);
 
-    // Setup deploy callback, MyDeployCallback implements
-    // the Metadata.DeployCallback interface (code for
-    // this class not shown in this example)
-    MyDeployCallback callback = new MyDeployCallback();
+        container.addMetadata(customMetadata);
+    }
 
-    // Enqueue custom metadata deployment
-    Id jobId = Metadata.Operations.enqueueDeployment(mdContainer, callback);
+    Metadata.Operations.enqueueDeployment(container, new BTriggerHMCallback());
   }
 }
