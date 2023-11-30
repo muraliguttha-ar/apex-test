@@ -1,7 +1,6 @@
 <aura:component
     controller="ContactController"
-    implements="flexipage:availableForAllPageTypes"
->
+    implements="flexipage:availableForAllPageTypes">
     <aura:attribute name="contactId" type="Id" />
     <aura:attribute name="contact" type="Object" />
 
@@ -13,20 +12,17 @@
     <lightning:messageChannel
         type="Record_Selected__c"
         aura:id="recordSelected"
-        onMessage="{!c.handleMessage}"
-    />
+        onMessage="{!c.handleMessage}"/>
 
     <force:recordData
         aura:id="service"
         recordId="{!v.contactId}"
         fields="['Name', 'Title', 'Phone', 'Email', 'Picture__c']"
-        targetFields="{!v.contact}"
-    />
+        targetFields="{!v.contact}"/>
 
     <lightning:card
         title="LmsSubscriberAuraComponent"
-        iconName="custom:custom30"
-    >
+        iconName="custom:custom30">
         <aura:set attribute="actions">
             <span class="aura">Aura Component</span>
         </aura:set>
@@ -53,8 +49,7 @@
                         class="slds-text-link"
                         href="https://github.com/trailheadapps/lwc-recipes/tree/main/force-app/main/default/aura/lmsSubscriberAuraComponent"
                         target="source"
-                        >View Source</a
-                    >
+                        >View Source</a>
                 </p>
             </div>
         </aura:set>
